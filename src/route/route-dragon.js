@@ -29,15 +29,18 @@ module.exports = function routeDragon(router) {
     storage.fetchOne('Dragon', req.url.query.id)
       .then((item) => {
         response.sendJSON(res, 200, item);
+        return undefined;
       })
       .catch((err) => {
         logger.log(logger.ERROR, JSON.stringify(err));
         response.sendText(res, 404, 'No Id - Id Required');
+        return undefined;
       });
     } else {
-      storage.fetchAll('Dragon', req.body)
+      storage.fetchAll('Dragon')
         .then((item) => {
           response.sendJSON(res, 200, item);
+          return undefined;
         })
         .catch((err) => {
           logger.log(logger.ERROR, err, JSON.stringify(err));

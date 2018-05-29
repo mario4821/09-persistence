@@ -1,8 +1,9 @@
 'use strict';
 
 const logger = require('./logger');
-
 const storage = module.exports = {};
+const Promise = require('bluebird');
+const fs = Promise.promisifyAll(require('fs'), { suffix: 'Prom' });
 const memory = {};
 
 storage.create = function create(schema, item) {
